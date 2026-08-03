@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cp3l5spmhkw82"]
+
+[ext_resource type="Script" uid="uid://b2joiwrcebwpq" path="res://источник_энергии.gd" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://fy46um8f3325" path="res://cell.gd" id="1_fj7yv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sf6d4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4qxt"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2nfdp"]
+material = SubResource("StandardMaterial3D_c4qxt")
+radius = 0.25
+height = 0.5
+
+[node name="World" type="Node3D" unique_id=1068819437]
+
+[node name="Cell" type="MeshInstance3D" parent="." unique_id=1038995722 node_paths=PackedStringArray("источник_энергии")]
+mesh = SubResource("SphereMesh_sf6d4")
+script = ExtResource("1_fj7yv")
+"источник_энергии" = NodePath("../ИсточникЭнергии")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1580329340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1418136966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 30, 0)
+
+[node name="ИсточникЭнергии" type="Node3D" parent="." unique_id=1577430396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+script = ExtResource("1_f3sb7")
+
+[node name="Маркер" type="MeshInstance3D" parent="ИсточникЭнергии" unique_id=1352374297]
+mesh = SubResource("SphereMesh_2nfdp")
