@@ -1,6 +1,6 @@
 extends RefCounted
 
-const КодыМодулей = preload("res://геном/коды_модулей.gd")
+const КодыГенов = preload("res://геном/коды_генов.gd")
 
 
 static func прочитать(части: PackedStringArray) -> Dictionary:
@@ -24,6 +24,6 @@ static func прочитать(части: PackedStringArray) -> Dictionary:
 		}
 
 	return {
-		"тип": КодыМодулей.НАКОПЛЕНИЕ_ОРГАНИКИ,
+		"тип": КодыГенов.НАКОПИТЕЛЬ_ОРГАНИКИ,
 		"органика": органика
 	}
