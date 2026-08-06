@@ -1,6 +1,6 @@
 extends Node3D
 
-const СЦЕНА_КЛЕТКИ: PackedScene = preload("res://cell.tscn")
+const ФабрикаКлеток = preload("res://клетка/фабрика_клеток.gd")
 
 @onready var кнопка_добавить_клетку: Button = $Интерфейс/ДобавитьКлетку
 @onready var поле_генома: LineEdit = $Интерфейс/ГеномHex
@@ -12,20 +12,20 @@ func _ready() -> void:
 	кнопка_добавить_клетку.pressed.connect(добавить_клетку)
 
 
-func добавить_клетку() -> void:	
+func добавить_клетку() -> void:
 	var геном_hex: String = поле_генома.text.strip_edges()
 
 	if геном_hex.is_empty():
-		push_error("HEX-строка генома не должна быть пустой")
+		push_error("HEX-строка генома не должна быть пустой.")
 		return
 
-	var клетка := СЦЕНА_КЛЕТКИ.instantiate() as Node3D
+	var результат: Dictionary = ФабрикаКлеток.создать_из_hex(геном_hex)
 
-	if клетка == null:
-		push_error("Корневой узел сцены клетки должен наследоваться от Node3D")
+	if результат.has("ошибка"):
+		push_error(результат["ошибка"])
 		return
 
-	клетка.set("геном_hex", геном_hex)
+	var клетка: Клетка = результат["клетка"]
 	клетка.position = следующая_позиция
 	add_child(клетка)
 

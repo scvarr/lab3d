@@ -4,6 +4,7 @@ extends RefCounted
 var модули: Array[Dictionary] = []
 var профиль: ПрофильФункций = ПрофильФункций.new()
 
+var органика_тела_на_модуль: float = 0.0
 var органика_модулей: float = 0.0
 var органика_тела: float = 0.0
 var структурная_органика: float = 0.0
