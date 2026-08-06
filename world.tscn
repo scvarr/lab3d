@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b6fdke5m5pidf" path="res://cell.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://cwavkg5t45vl8" path="res://world.gd" id="1_fj7yv"]
+[ext_resource type="Script" uid="uid://td53h02fplly" path="res://тесты/r0_фиксация_поведения.gd" id="3_tlwt5"]
 
 [node name="World" type="Node3D" unique_id=1068819437]
 script = ExtResource("1_fj7yv")
@@ -31,3 +32,6 @@ offset_left = 9.0
 offset_top = 8.0
 offset_right = 955.0
 offset_bottom = 46.0
+
+[node name="R0Проверка" type="Node" parent="." unique_id=380921378]
+script = ExtResource("3_tlwt5")
