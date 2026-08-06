@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://b6fdke5m5pidf"]
 
 [ext_resource type="Script" uid="uid://fy46um8f3325" path="res://cell.gd" id="1_yh0nt"]
+[ext_resource type="Script" uid="uid://c88rxqwb5vtoy" path="res://клетка/представление_клетки.gd" id="2_gwrgs"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_sf6d4"]
-
-[node name="Cell" type="MeshInstance3D" unique_id=763821777]
-mesh = SubResource("SphereMesh_sf6d4")
+[node name="Cell" type="Node3D" unique_id=1114794007]
 script = ExtResource("1_yh0nt")
 "показывать_внутренние_модули" = true
+
+[node name="Представление" type="Node3D" parent="." unique_id=905567755]
+script = ExtResource("2_gwrgs")
+
+[node name="Оболочка" type="MeshInstance3D" parent="Представление" unique_id=1329501859]
+
+[node name="Диагностика" type="Node3D" parent="Представление" unique_id=1280792489]
