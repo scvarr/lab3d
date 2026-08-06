@@ -1,16 +1,13 @@
 [gd_scene format=3 uid="uid://cp3l5spmhkw82"]
 
-[ext_resource type="Script" uid="uid://fy46um8f3325" path="res://cell.gd" id="1_fj7yv"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_sf6d4"]
+[ext_resource type="PackedScene" uid="uid://b6fdke5m5pidf" path="res://cell.tscn" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://cwavkg5t45vl8" path="res://world.gd" id="1_fj7yv"]
 
 [node name="World" type="Node3D" unique_id=1068819437]
-
-[node name="Cell" type="MeshInstance3D" parent="." unique_id=1038995722]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0058585405, -1.1920929e-07, -0.0016086102)
-mesh = SubResource("SphereMesh_sf6d4")
 script = ExtResource("1_fj7yv")
-"показывать_внутренние_модули" = true
+
+[node name="Cell" parent="." unique_id=763821777 instance=ExtResource("1_f3sb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0058585405, -1.1920929e-07, -0.0016086102)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1580329340]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
@@ -18,3 +15,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1418136966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 30, 0)
 sky_mode = 1
+
+[node name="Интерфейс" type="CanvasLayer" parent="." unique_id=453928167]
+
+[node name="ДобавитьКлетку" type="Button" parent="Интерфейс" unique_id=456517691]
+offset_left = 11.0
+offset_top = 59.0
+offset_right = 156.0
+offset_bottom = 90.0
+text = "Добавить клетку"
+
+[node name="ГеномHex" type="LineEdit" parent="Интерфейс" unique_id=1902553777]
+custom_minimum_size = Vector2(700, 0)
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 955.0
+offset_bottom = 46.0

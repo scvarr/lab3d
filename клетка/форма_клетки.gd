@@ -145,6 +145,52 @@ func создать_визуализацию_модулей() -> Node3D:
 	return контейнер
 
 
+func получить_точки_сцепки() -> Array[Vector3]:
+	var точки: Array[Vector3] = []
+
+	for номер: int in range(модули.size()):
+		if модули[номер]["тип"] != КодыГенов.ПОЧКОВАНИЕ:
+			continue
+
+		var направление: Vector3 = центры_модулей[номер].normalized()
+
+		if направление.is_zero_approx():
+			continue
+
+		var радиус_поверхности: float = найти_радиус_поверхности(направление)
+		точки.append(направление * радиус_поверхности)
+
+	return точки
+
+
+func создать_визуализацию_точек_сцепки() -> Node3D:
+	var контейнер := Node3D.new()
+	контейнер.name = "ТочкиСцепки"
+
+	var точки: Array[Vector3] = получить_точки_сцепки()
+
+	for номер: int in range(точки.size()):
+		var сфера := SphereMesh.new()
+		сфера.radius = 0.12
+		сфера.height = 0.24
+		сфера.radial_segments = 16
+		сфера.rings = 8
+
+		var материал := StandardMaterial3D.new()
+		материал.albedo_color = Color(1.0, 0.9, 0.1)
+		материал.roughness = 0.35
+
+		var маркер := MeshInstance3D.new()
+		маркер.name = "ТочкаСцепки_%02d" % номер
+		маркер.mesh = сфера
+		маркер.material_override = материал
+		маркер.position = точки[номер]
+
+		контейнер.add_child(маркер)
+
+	return контейнер
+	
+
 func создать_материал_гибели() -> StandardMaterial3D:
 	var материал := StandardMaterial3D.new()
 	материал.albedo_color = Color(0.03, 0.03, 0.03)

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b6fdke5m5pidf"]
+
+[ext_resource type="Script" uid="uid://fy46um8f3325" path="res://cell.gd" id="1_yh0nt"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sf6d4"]
+
+[node name="Cell" type="MeshInstance3D" unique_id=763821777]
+mesh = SubResource("SphereMesh_sf6d4")
+script = ExtResource("1_yh0nt")
+"показывать_внутренние_модули" = true
