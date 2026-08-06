@@ -1,7 +1,7 @@
 class_name КонструкцияКлетки
 extends RefCounted
 
-var модули: Array[Dictionary] = []
+var модули: Array[ВыраженнаяФункция] = []
 var профиль: ПрофильФункций = ПрофильФункций.new()
 
 var органика_тела_на_модуль: float = 0.0
