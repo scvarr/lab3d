@@ -2,7 +2,7 @@ extends RefCounted
 
 const КодыГенов = preload("res://геном/коды_генов.gd")
 
-const ПОРОГ_ПОВЕРХНОСТИ: float = 0.5
+const ПОРОГ_ПОВЕРХНОСТИ: float = 1.0
 const КОЛЬЦА_ФОРМЫ: int = 24
 const СЕГМЕНТЫ_ФОРМЫ: int = 48
 const ШАГИ_ПОИСКА_ПОВЕРХНОСТИ: int = 18
@@ -103,7 +103,43 @@ func создать_материал_клетки() -> StandardMaterial3D:
 	материал.roughness = 0.7
 	return материал
 
+func создать_материал_прозрачной_клетки() -> StandardMaterial3D:
+	var материал := создать_материал_клетки()
+	материал.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	материал.albedo_color.a = 0.22
+	материал.cull_mode = BaseMaterial3D.CULL_DISABLED
+	return материал
 
+func создать_визуализацию_модулей() -> Node3D:
+	var контейнер := Node3D.new()
+	контейнер.name = "ВнутренниеМодули"
+
+	for номер: int in range(модули.size()):
+		var сфера := SphereMesh.new()
+		сфера.radius = 1.0
+		сфера.height = 2.0
+		сфера.radial_segments = 24
+		сфера.rings = 12
+
+		var материал := StandardMaterial3D.new()
+		var цвет: Color = получить_цвет_модуля(модули[номер]["тип"])
+		цвет.a = 0.55
+
+		материал.albedo_color = цвет
+		материал.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		материал.roughness = 0.45
+
+		var визуальный_модуль := MeshInstance3D.new()
+		визуальный_модуль.name = "Модуль_%02d" % номер
+		визуальный_модуль.mesh = сфера
+		визуальный_модуль.material_override = материал
+		визуальный_модуль.position = центры_модулей[номер]
+		визуальный_модуль.scale = размеры_модулей[номер]
+
+		контейнер.add_child(визуальный_модуль)
+
+	return контейнер
+	
 func создать_материал_гибели() -> StandardMaterial3D:
 	var материал := StandardMaterial3D.new()
 	материал.albedo_color = Color(0.03, 0.03, 0.03)

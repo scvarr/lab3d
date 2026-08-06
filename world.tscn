@@ -10,6 +10,7 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0058585405, -1.1920929e-07, -0.0016086102)
 mesh = SubResource("SphereMesh_sf6d4")
 script = ExtResource("1_fj7yv")
+"показывать_внутренние_модули" = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1580329340]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
