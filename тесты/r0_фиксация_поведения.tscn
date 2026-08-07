@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://тесты/r0_фиксация_поведения.gd" id="1_r0"]
+
+[node name="R0Проверка" type="Node"]
+script = ExtResource("1_r0")
